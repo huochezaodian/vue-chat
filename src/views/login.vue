@@ -21,6 +21,7 @@
 <script>
     import validate from '../libs/validate.js'
     import io from 'socket.io-client';
+    import ENV from '../config/env.js';
     export default {
         computed:{
             sock(){
@@ -89,7 +90,8 @@
         },
         created(){
             if(!this.sock){
-                this.$store.dispatch('set_socket', { socket: io.connect('ws://localhost:8088/') });
+                let url = ENV == 'development' ? 'ws://localhost:8088' : 'pruduction -- url';
+                this.$store.dispatch('set_socket', { socket: io.connect(url) });
             }
         },
         destroyed(){

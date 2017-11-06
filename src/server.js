@@ -20,6 +20,12 @@ wsServer.on('connection', sock => {
 	console.log('连接');
 	sock.on('login', (username, password) => {
 		console.log('登录');
+		
+		if(users.includes(username)){
+			sock.emit('login_result',{'err':1,'msg':'用户已登录'});
+			return;
+		}
+
 		let SQL = `SELECT * FROM user WHERE name="${username}" AND password="${password}"`;
 		db.query(SQL, (err, data) => {
 			console.log('数据库查询');
