@@ -6,6 +6,9 @@
 	    background-color: #fff;
 	    box-shadow: 0 0 10px 10px rgba(0,0,0,.2);
   	};
+
+  	--input-padding-x: 4px;
+  	--input-padding-y: 10px;
 }
 
 .login-wrap{
@@ -17,6 +20,58 @@
     padding-right: 50px;
     padding-top: 40px;
     @apply --black-shadow;
+    & .ivu-input-group input{
+    	background-color: transparent;
+    	height: 42px;
+    }
+    & .ivu-input-group input,& .ivu-input-group span {
+    	font-size: 14px;
+	  	padding: var(--input-padding-y) var(--input-padding-x);
+	}
+	& .ivu-input-group > span {
+		position: absolute;
+		top: 0;
+		display: block;
+		width: 155px;
+		line-height: 1.5;
+		color: #777;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		transition: all .1s ease-in-out;
+	}
+	& .ivu-input-group input:not(:placeholder-shown) {
+		padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+		padding-bottom: calc(var(--input-padding-y) / 3);
+	}
+
+	& .ivu-input-group input:not(:placeholder-shown) ~ span {
+		padding-top: calc(var(--input-padding-y) / 3);
+		padding-bottom: calc(var(--input-padding-y) / 3);
+		font-size:11.9px; 
+        transform-origin: left;
+        transform: scale(0.85);
+		color: #bbbec4;
+	}
+	& .ivu-input-group input::-webkit-input-placeholder {
+		color: transparent;
+	}
+
+	& .ivu-input-group input:-ms-input-placeholder {
+		color: transparent;
+	}
+
+	& .ivu-input-group input::-ms-input-placeholder {
+		color: transparent;
+	}
+
+	& .ivu-input-group input::-moz-placeholder {
+		color: transparent;
+	}
+
+	& .ivu-input-group input::placeholder {
+		color: transparent;
+	}
+
 }
 
 .chat-room{

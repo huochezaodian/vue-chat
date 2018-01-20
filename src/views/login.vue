@@ -94,6 +94,16 @@
                 this.$store.dispatch('set_socket', { socket: io.connect(url) });
             }
         },
+        mounted(){
+            //加载完成之后给input加上
+            let inputs = document.querySelectorAll('input');
+            [].map.call(inputs, inp => {
+                let label = document.createElement('span');
+                label.innerHTML = inp.getAttribute('placeholder');
+                let parent = inp.parentNode;
+                parent.appendChild(label);
+            })
+        },
         destroyed(){
             this.sock && this.sock.removeListener('login_result');
         }
